@@ -10,4 +10,4 @@ bin/main.o: src/main.c include/main.h
 lab1: bin/algorithm.o bin/io.o bin/util.o bin/main.o
 	gcc bin/algorithm.o bin/io.o bin/util.o bin/main.o -o lab1
 clean:
-	rm bin/*.o lab1
+	rm bin/*.o
