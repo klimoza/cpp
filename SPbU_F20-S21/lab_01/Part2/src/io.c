@@ -1,3 +1,3 @@
 #include "../include/io.h"
 
-void logDebug(char a) {}
+//void logDebug(char a) {}
