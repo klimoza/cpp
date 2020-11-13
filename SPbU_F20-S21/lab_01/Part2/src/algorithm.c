@@ -1,5 +1,6 @@
-#include "../include/algorithm.h"
-#include "util.c"	
+#include "util.h"
+#include "util.c"
+#include "io.h"
 
 int doComputation(int a, double b) {
   int c = max(3, 4);

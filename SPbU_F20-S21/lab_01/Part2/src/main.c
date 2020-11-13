@@ -1,4 +1,6 @@
-#include "../include/main.h"
+#include "util.h"
+#include "io.h"
+#include "algorithm.h"
 
 void main() {
   int a = doComputation(5, 7.0);
