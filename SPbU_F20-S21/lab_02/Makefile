@@ -1,4 +1,6 @@
-all: obj/str.o obj/test_str.o obj/test.o lab_02 clean
+all: make_bin obj/str.o obj/test_str.o obj/test.o lab_02 clean
+make_bin:
+	mkdir obj
 obj/str.o: src/str.c
 	gcc -c src/str.c -o obj/str.o -I include
 obj/test_str.o: src/test_str.c include/str.h
@@ -10,4 +12,4 @@ lab_02: obj/str.o obj/test_str.o obj/test.o
 run:
 	./lab_02
 clean:
-	rm obj/*.o
+	rm -R obj
