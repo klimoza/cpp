@@ -3,10 +3,7 @@
 #include "stdio.h"
 #include "string.h"
 
-/*В задании не указано, что нельзя пользоваться стандартными библиотеками 
-	при тестировании, поэтому я решил что можно.*/
-
-void test_strcpy(){
+void test_strcpy() {
 	char s1[] = {'t', 'e', 's', 't'};
 	char* s2 = "";
 	my_strcpy(s1, s2);
@@ -18,7 +15,7 @@ void test_strcpy(){
 	assert(strcmp(s3, "cool") == 0);
 }
 
-void test_strcat(){
+void test_strcat() {
 	char s1[] = {'t', 'e', 's', 't', '\0', 't', 'e', 's', 't'};
 	char* s2 = "test";
 	my_strcat(s1, s2);
@@ -35,7 +32,7 @@ void test_strcat(){
 	assert(strcmp(s5, "nice") == 0);
 }
 
-void test_strcmp(){
+void test_strcmp() {
 	char *s1 = "lol";
 	char *s2 = "kek";
 	assert(my_strcmp(s1, s2) == 1);
@@ -52,7 +49,7 @@ void test_strcmp(){
 	assert(my_strcmp(s6, s5) == 1);
 }
 
-void test_strlen(){
+void test_strlen() {
 	char *s1 = "test string";
 	assert(my_strlen(s1) == 11);
 

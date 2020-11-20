@@ -1,4 +1,4 @@
-all: make_bin obj/str.o obj/test_str.o obj/test.o lab_02 clean
+all: make_bin obj/str.o obj/test_str.o obj/test.o lab_02
 make_bin:
 	mkdir obj
 obj/str.o: src/str.c

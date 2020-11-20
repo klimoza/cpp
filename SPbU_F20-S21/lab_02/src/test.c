@@ -1,6 +1,6 @@
 #include "test_str.h"
 
-int main(){
+int main() {
 	test_strcpy();
 	test_strcat();
 	test_strcmp();
