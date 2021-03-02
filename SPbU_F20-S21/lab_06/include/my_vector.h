@@ -1,13 +1,17 @@
 #ifndef _MY_VECTOR_H_INCLUDED
 #define _MY_VECTOR_H_INCLUDED
 
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
+#include <cstdlib>
+#include <cstring>
 
 class MyVector {
- public: // methods
+ public:
   MyVector();
   MyVector(std::size_t init_capacity);
-  MyVector(MyVector &a);
+  MyVector(const MyVector &a);
   MyVector& operator=(const MyVector &a);
   ~MyVector();
 
@@ -24,7 +28,9 @@ class MyVector {
   void insert(std::size_t index, int value);
   void erase(std::size_t index);
 
- private: // fields
+  void init(std::size_t new_sz, std::size_t new_cp);
+
+ private:
   std::size_t _sz, _cp;
   int *_data;
 };

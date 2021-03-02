@@ -1,27 +1,15 @@
 #include "my_vector.h"
 
-#include <algorithm>
-#include <cassert>
-#include <cstdlib>
-#include <cstring>
+const std::size_t INITIAL_CAPACITY = 2;
 
-MyVector::MyVector() {
-  const int INITIAL_CAPACITY = 2;
-  _cp = INITIAL_CAPACITY;
-  _sz = 0;
-  _data = (int*) malloc(sizeof(int) * _cp);
-}
+MyVector::MyVector() : MyVector(INITIAL_CAPACITY) {}
 
 MyVector::MyVector(std::size_t init_capacity) {
-  _cp = init_capacity;
-  _sz = 0;
-  _data = (int*) malloc(sizeof(int) * _cp);
+  init(0, init_capacity);
 }
 
-MyVector::MyVector(MyVector &a) {
-  _cp = a._cp;
-  _sz = a._sz;
-  _data = (int*) malloc(sizeof(int) * _cp);
+MyVector::MyVector(const MyVector &a) {
+  init(a._sz, a._cp);
   memcpy(_data, a._data, sizeof(int) * _sz);
 }
 
@@ -29,9 +17,7 @@ MyVector& MyVector::operator=(const MyVector &a) {
   if (&a == this)
     return *this;
   free(_data);
-  _sz = a._sz;
-  _cp = a._cp;
-  _data = (int*) malloc(sizeof(int) * _cp);
+  init(a._sz, a._cp);
   memcpy(_data, a._data, sizeof(int) * _sz);
   return *this;
 }
@@ -90,6 +76,12 @@ void MyVector::insert(std::size_t index, int value) {
 
 void MyVector::erase(std::size_t index) {
   assert(index < _sz);
-  memcpy(_data + index, _data + index + 1, sizeof(int) * (_sz - index + 1));
+  memcpy(_data + index, _data + index + 1, sizeof(int) * (_sz - index - 1));
   _sz--;
+}
+
+void MyVector::init(std::size_t new_sz, std::size_t new_cp) {
+    _sz = new_sz;
+    _cp = new_cp;
+    _data = (int*) malloc(sizeof(int) * _cp);
 }
