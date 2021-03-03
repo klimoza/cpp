@@ -2,11 +2,15 @@
 #define LAB_08_MATRIX_H
 
 #include <cstdio>
-#include <cstddef>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
+#include <fstream>
 
 class Matrix {
 public:
   Matrix(std::size_t r, std::size_t c);
+  ~Matrix();
 
   std::size_t get_rows();
   std::size_t get_cols();
