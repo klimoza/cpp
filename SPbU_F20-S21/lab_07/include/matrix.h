@@ -1,8 +1,7 @@
-#ifndef LAB_08_MATRIX_H
-#define LAB_08_MATRIX_H
+#ifndef LAB_07_MATRIX_H
+#define LAB_07_MATRIX_H
 
 #include <cstdio>
-#include <cassert>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
@@ -10,28 +9,34 @@
 class Matrix {
 public:
   Matrix(std::size_t r, std::size_t c);
+  Matrix(const Matrix &m);
   ~Matrix();
 
-  std::size_t get_rows();
-  std::size_t get_cols();
+  std::size_t get_rows() const;
+  std::size_t get_cols() const;
   void set(std::size_t i, std::size_t j, int val);
-  int get(std::size_t i, std::size_t j);
-  void print(FILE *f);
+  int get(std::size_t i, std::size_t j) const;
+  void print(FILE *f) const;
 
-  Matrix operator+(Matrix& m);
-  Matrix operator-(Matrix& m);
-  Matrix operator*(Matrix& m);
+  Matrix operator+(const Matrix& m) const;
+  Matrix operator-(const Matrix& m) const;
+  Matrix operator*(const Matrix& m) const;
 
-  Matrix& operator+=(Matrix& m);
-  Matrix& operator-=(Matrix& m);
-  Matrix& operator*=(Matrix& m);
+  Matrix& operator=(const Matrix& m);
+  Matrix& operator+=(const Matrix& m);
+  Matrix& operator-=(const Matrix& m);
+  Matrix& operator*=(const Matrix& m);
 
-  bool operator==(Matrix& m);
-  bool operator!=(Matrix& m);
+  bool operator==(const Matrix& m) const ;
+  bool operator!=(const Matrix& m) const ;
+
+  void init(std::size_t new_r, std::size_t new_c);
+  void free();
+
 private:
-  std::size_t _rows;
-  std::size_t _cols;
-  int **_data;
+  std::size_t _rows = 0;
+  std::size_t _cols = 0;
+  int **_data = nullptr;
 };
 
 #endif
