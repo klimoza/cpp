@@ -27,13 +27,14 @@ public:
   Matrix& operator-=(const Matrix& m);
   Matrix& operator*=(const Matrix& m);
 
-  bool operator==(const Matrix& m) const ;
-  bool operator!=(const Matrix& m) const ;
+  bool operator==(const Matrix& m) const;
+  bool operator!=(const Matrix& m) const;
 
+private:
   void init(std::size_t new_r, std::size_t new_c);
   void free();
 
-private:
+private: // fields
   std::size_t _rows = 0;
   std::size_t _cols = 0;
   int **_data = nullptr;
