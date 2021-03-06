@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -O2 -Wall -Werror -std=c++11 -Iinclude
-LDFLAGS = 
+LDFLAGS =
 
-EXE = lab_09
+EXE = lab_08
 SRCDIR = src
 BINDIR = bin
 
@@ -12,7 +12,7 @@ all: $(EXE)
 
 $(EXE): $(BINDIR) $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXE) $(LDFLAGS)
-	
+
 $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -MMD -o $@ $<
 

@@ -42,7 +42,7 @@ void test_simple() {
 void test_operators() {
     Matrix* ref = make_matrix(1);
     shared_ptr ptr = make_shared(1);
-    
+
     assert(*ptr == *ref);
     assert(ptr->get_rows() == 2);
     assert(ptr->get_cols() == 2);
@@ -108,7 +108,7 @@ void test_shared_swap() {
     shared_ptr a(make_matrix(1));
     shared_ptr a1(a);
     assert(*a == *make_shared(1));
-    
+
     shared_ptr a2;
     a2 = a;
     assert(*a2 == *make_shared(1));
@@ -120,7 +120,7 @@ void test_shared_swap() {
 
     shared_ptr b2(b1);
     assert(*b2 == *make_shared(6));
-    
+
     std::swap(a, b);
     assert(*a == *make_shared(6));
     assert(*b == *make_shared(1));
@@ -164,7 +164,7 @@ void test_many() {
     shared_ptr p14(p3);
     shared_ptr p15(p13);
     shared_ptr p16(p12);
-    shared_ptr p17(p15); 
+    shared_ptr p17(p15);
 }
 
 typedef void (*test_function)();
@@ -192,7 +192,7 @@ int main(int argc, char* argv[]) {
     test_map tests;
     init_test_map(tests);
 
-    if (argc < 2 || 
+    if (argc < 2 ||
         tests.find(argv[1]) == tests.end()) {
         run_all(tests);
     }
