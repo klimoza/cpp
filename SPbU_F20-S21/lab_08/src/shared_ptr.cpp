@@ -2,10 +2,8 @@
 
 void shared_ptr::free() {
   storage_->decr();
-  if(!storage_->getCounter()) {
-    storage_->free();
+  if(!storage_->getCounter())
     delete storage_;
-  }
   storage_ = nullptr;
 }
 
