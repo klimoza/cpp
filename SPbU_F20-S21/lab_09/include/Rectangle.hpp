@@ -11,7 +11,7 @@ public:
 
     // ...
 
-protected:
+private:
     int width;
     int height;
 };

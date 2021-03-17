@@ -20,4 +20,6 @@ private:
     // ...
     size_t sz = 0;
     Figure** figures_ = nullptr; // размер массива задается в конструкторе и больше не растет
+private:
+    int find_with_id(int id);
 };

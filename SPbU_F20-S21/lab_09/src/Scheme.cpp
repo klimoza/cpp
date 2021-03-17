@@ -17,13 +17,11 @@ void Scheme::push_back_figure(Figure* fg) {
 }
 
 void Scheme::remove_figure(int id) {
-  for(std::size_t i = 0; i < sz; i++) {
-    if(figures_[i]->get_id() == id) {
-      delete figures_[i];
-      std::copy(figures_ + i + 1, figures_ + sz, figures_ + i);
-      sz--;
-      break;
-    }
+  int i = find_with_id(id);
+  if(i != -1) {
+    delete figures_[i];
+    std::copy(figures_ + i + 1, figures_ + sz, figures_ + i);
+    sz--;
   }
 }
 
@@ -33,12 +31,9 @@ void Scheme::print_all_figures() {
 }
 
 void Scheme::zoom_figure(int id, int factor) {
-  for(std::size_t i = 0; i < sz; i++) {
-    if(figures_[i]->get_id() == id) {
-      figures_[i]->zoom(factor);
-      break;
-    }
-  }
+  int i = find_with_id(id);
+  if(i != -1)
+    figures_[i]->zoom(factor);
 }
 
 Figure* Scheme::is_inside_figure(int x, int y) {
@@ -50,10 +45,14 @@ Figure* Scheme::is_inside_figure(int x, int y) {
 }
 
 void Scheme::move(int id, int x, int y) {
-  for(std::size_t i = 0; i < sz; i++) {
-    if(figures_[i]->get_id() == id) {
-      figures_[i]->move(x, y);
-      break;
-    }
-  }
+  int i = find_with_id(id);
+  if(i != -1)
+    figures_[i]->move(x , y);
+}
+
+int Scheme::find_with_id(int id) {
+  for(std::size_t i = 0; i < sz; i++)
+    if(figures_[i]->get_id() == id)
+      return i;
+  return -1;
 }

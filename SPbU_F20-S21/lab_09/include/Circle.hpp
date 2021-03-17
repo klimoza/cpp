@@ -15,7 +15,7 @@ public:
 
     // ...
 
-protected:
+private:
     const char* label;
     int radius;
 };
