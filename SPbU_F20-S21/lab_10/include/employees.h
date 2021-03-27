@@ -10,7 +10,12 @@
 
 class Employee {
 public:
-  Employee(std::string post);
+  enum class Types : int {
+    Developer = 1,
+    SalesManager = 2
+  };
+
+  Employee(std::string post, int type);
 
   virtual ~Employee();
 
@@ -32,21 +37,15 @@ public:
   static Employee* create_f(std::ifstream& in);
 
 protected:
-  std::string post;
+  const std::string post;
+  const int type;
   std::string _name;
   int32_t _base_salary;
 };
 
 class Developer : public Employee {
 public:
-  // Сделано для того, чтобы можно было обращаться к TYPE без экземпляра класса
-  inline static const int TYPE = 1;
-public:
-  int salary() const override {
-    int salary = _base_salary;
-    if (_has_bonus) { salary += 1000; }
-    return salary;
-  }
+  int salary() const override;
 
   Developer();
 
@@ -61,12 +60,7 @@ private:
 
 class SalesManager : public Employee {
 public:
-  // Сделано для того, чтобы можно было обращаться к TYPE без экземпляра класса
-  inline static const int TYPE = 2;
-public:
-  int salary() const override {
-    return _base_salary + _sold_nm * _price * 0.01;
-  }
+  int salary() const override;
 
   SalesManager();
 

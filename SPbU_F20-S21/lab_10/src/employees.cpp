@@ -1,6 +1,6 @@
 #include "employees.h"
 
-Employee::Employee(std::string post) : post(post) {}
+Employee::Employee(std::string post, int type) : post(post), type(type) {}
 
 Employee::~Employee() {}
 
@@ -10,9 +10,9 @@ std::string Employee::get_post() {
 
 Employee* get_employee(int tp) {
   switch (tp) {
-    case Developer::TYPE:
+    case (int)Employee::Types::Developer:
       return new Developer;
-    case SalesManager::TYPE:
+    case (int)Employee::Types::SalesManager:
       return new SalesManager;
     default:
       assert(false);
@@ -35,9 +35,19 @@ Employee* Employee::create_f(std::ifstream& in) {
   return e;
 }
 
-Developer::Developer() : Employee("Developer") {}
+Developer::Developer() : Employee("Developer", 1) {}
 
-SalesManager::SalesManager() : Employee("SalesManager") {}
+int Developer::salary() const {
+  int salary = _base_salary;
+  if (_has_bonus) { salary += 1000; }
+  return salary;
+}
+
+SalesManager::SalesManager() : Employee("Sales Manager", 2) {}
+
+int SalesManager::salary() const {
+  return _base_salary + _sold_nm * _price * 0.01;
+}
 
 std::ostream& Employee::print(std::ostream& out) const {
   return out << "Name: " << _name << std::endl
@@ -60,14 +70,14 @@ std::ofstream& Employee::print_f(std::ofstream& out) const {
 }
 
 std::ofstream& Developer::print_f(std::ofstream& out) const {
-  out.write((char*) &TYPE, sizeof(int));
+  out.write((char*) &type, sizeof(int));
   Employee::print_f(out);
   out.write((char*) &_has_bonus, sizeof(bool));
   return out;
 }
 
 std::ofstream& SalesManager::print_f(std::ofstream& out) const {
-  out.write((char*) &TYPE, sizeof(int));
+  out.write((char*) &type, sizeof(int));
   Employee::print_f(out);
   out.write((char*) &_sold_nm, sizeof(int));
   out.write((char*) &_price, sizeof(int));
