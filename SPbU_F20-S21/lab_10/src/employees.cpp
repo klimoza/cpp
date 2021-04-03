@@ -8,15 +8,17 @@ std::string Employee::get_post() {
   return post;
 }
 
+int Employee::get_type() {
+  return type;
+}
+
 Employee* get_employee(int tp) {
-  switch (tp) {
-    case (int)Employee::Types::Developer:
-      return new Developer;
-    case (int)Employee::Types::SalesManager:
-      return new SalesManager;
-    default:
-      assert(false);
-  }
+  if(tp == Developer().get_type())
+    return new Developer();
+  else if(tp == SalesManager().get_type())
+    return new SalesManager();
+  else
+   assert(false);
 }
 
 Employee* Employee::create(std::istream& in) {

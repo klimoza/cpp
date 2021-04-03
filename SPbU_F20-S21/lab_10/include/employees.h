@@ -10,17 +10,13 @@
 
 class Employee {
 public:
-  enum class Types : int {
-    Developer = 1,
-    SalesManager = 2
-  };
-
   Employee(std::string post, int type);
 
   virtual ~Employee();
 
   virtual int salary() const = 0;
   std::string get_post();
+  int get_type();
 
   virtual std::ostream& print(std::ostream& out) const;
   virtual std::istream& read(std::istream& in);
